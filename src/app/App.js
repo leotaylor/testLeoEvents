@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import logo from '../../src/LEO_Events.png'
 import './App.css';
 
@@ -25,8 +26,19 @@ class App extends Component {
           </a>
           <TestButton />
         </header>
-        <HomeView />
-        <Navbar />
+        <BrowserRouter>
+          <div>
+            <Navbar/>
+            <div className="container">
+              <div className="row">
+                <Switch>
+                  <Route path="/" exact Component={HomeView}/>
+                </Switch>
+              </div>
+            </div>
+          </div>
+        </BrowserRouter>
+
       </div>
     );
 
