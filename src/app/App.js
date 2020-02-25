@@ -8,10 +8,23 @@ import Navbar from '../components/navbar/navbar';
 import TestButton from '../components/functionalButton/testButton';
 
 class App extends Component {
+
+  state={
+    toggle: false,
+  }
+
+  clickedIt = (e) => {
+    console.log('e', e);
+    this.setState({toggle: !this.state.toggle});
+  }
+  
   render () {
+
+    let dynamicClassName = !this.state.toggle ? 'App-header' : 'Crap-header';
+
     return (
       <div className="App">
-        <header className="App-header">
+        <header className={dynamicClassName}>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Yay! LEO Events in a React App.
@@ -24,7 +37,10 @@ class App extends Component {
           >
              The Real LEO Events Site
           </a>
-          <TestButton />
+          <TestButton
+            toggle={this.state.toggle}
+            clickedIt={this.clickedIt}
+          />
         </header>
         <BrowserRouter>
           <div>
